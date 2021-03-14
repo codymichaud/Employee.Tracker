@@ -25,4 +25,6 @@ title VARCHAR(30),
 salary DECIMAL,
 department_id INT,
 PRIMARY KEY (id)
-)
+);
+
+SELECT * FROM employee_trackDB;
