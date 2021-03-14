@@ -1,0 +1,27 @@
+{
+  "name": "Employee.Tracker",
+  "version": "1.0.0",
+  "description": "A database that allows an employer to manage and track its employees",
+  "main": "server.js",
+  "dependencies": {
+    "inquirer": "^8.0.0",
+    "mysql": "^2.18.1",
+    "nodemon": "^2.0.7"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/codymichaud/Employee.Tracker.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/codymichaud/Employee.Tracker/issues"
+  },
+  "homepage": "https://github.com/codymichaud/Employee.Tracker#readme"
+}
