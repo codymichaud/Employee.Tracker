@@ -6,7 +6,11 @@ const { async } = require('rxjs');
 
 (async () => {
     const viewAll = (connection) => {
-
+        await inquirer.prompt({
+            name: 'viewAll',
+            type: 'input',
+            message: 'View All Employees'
+        })
     };
 
     const allDepartment = () => {
