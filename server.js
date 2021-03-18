@@ -153,7 +153,35 @@ function updateEmployee() {
     connection.query('SELECT employee.last_name, roles.title FROM employee JOIN roles ON employee.role_id = roles.id;',
         (error, res) => {
             if (error) throw error;
-            console.table(res);
-            startPrompt();
+            inquirer.prompt([{
+                name: 'lastName',
+                type: 'rawlist',
+                message: 'What is the employees last name?',
+                choices: () => {
+                    const empLastName = [];
+                    for (i = 0; i < res.length; i++) {
+                        empLastName.push(res[i].last_name);
+                    }
+                    return empLastName;
+                }
+            },
+            {
+                name: 'roles',
+                type: 'rawlist',
+                message: 'What is the employees title?',
+                choices: getRole()
+            }]).then((answers) => {
+                const rolesId = getRole().indexOf(answers.roles) + 1;
+                connection.query('UPDATE employee SET WHERE ?', {
+                    last_name: answers.empLastName
+                },
+                    {
+                        role_id: rolesId
+                    }, (error) => {
+                        if (error) throw error;
+                        console.table(answers);
+                        startPrompt();
+                    })
+            })
         })
-}
+};
