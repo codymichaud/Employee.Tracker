@@ -61,15 +61,49 @@ const roleArray = [];
 function getRole() {
     connection.query('SELECT * FROM roles', (error, res) => {
         if (error) throw error;
-        for (i = 0; i < response.length; i++) {
+        for (i = 0; i < res.length; i++) {
             roleArray.push(res[i].title);
         }
     })
     return roleArray;
 };
 
-const managerArray[];
+const managerArray = [];
 
 function getManager() {
-    connection.query
+    connection.query('SELECT first_name, last_name FROM employee WHERE manager_id IS NULL', (error, res) => {
+        if (error) throw error;
+        for (i = 0; i < res.length; i++) {
+            managerArray.push(res[i].first_name);
+        }
+    })
+    return managerArray;
+};
+
+function addEmployee() {
+    inquirer.prompt([{
+        name: 'firstName',
+        type: 'input',
+        message: 'What is the employees first name?'
+    },
+    {
+        name: 'lastName',
+        type: 'input',
+        message: 'What is the employees last name?'
+    },
+    {
+        name: 'role',
+        input: 'list',
+        message: 'What is the employees role?',
+        choices: selectRole()
+    },
+    {
+        name: 'choice',
+        type: 'rawlist',
+        message: 'What is the Managers name?',
+        choices: selectManager()
+    }]).then((answers) => {
+        const rolesId = selectRole().indexOf(answers.role) + 1;
+        const managerId = selectManager().indexOf(answers.choice) + 1;
+    })
 }
