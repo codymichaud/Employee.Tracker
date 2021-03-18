@@ -19,7 +19,7 @@ name VARCHAR(30),
 PRIMARY KEY (id)
 );
 
-CREATE TABLE role (
+CREATE TABLE roles (
 id INT AUTO_INCREMENT,
 title VARCHAR(30),
 salary DECIMAL,
@@ -27,4 +27,15 @@ department_id INT,
 PRIMARY KEY (id)
 );
 
-SELECT * FROM employee_trackDB;
+SELECT * FROM employee;
+SELECT * FROM department;
+SELECT * FROM roles;
+
+
+SELECT name, title, salary
+FROM roles
+INNER JOIN department ON roles.department_id = department.id
+
+SELECT name, title, salary
+FROM roles
+INNER JOIN department ON roles.department_id = department.id;

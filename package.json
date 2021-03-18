@@ -4,6 +4,7 @@
   "description": "A database that allows an employer to manage and track its employees",
   "main": "server.js",
   "dependencies": {
+    "console.table": "^0.10.0",
     "inquirer": "^8.0.0",
     "mysql": "^2.18.1",
     "mysql2": "^2.2.5",
