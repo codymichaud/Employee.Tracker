@@ -61,6 +61,15 @@ const roleArray = [];
 function getRole() {
     connection.query('SELECT * FROM roles', (error, res) => {
         if (error) throw error;
-        for ()
+        for (i = 0; i < response.length; i++) {
+            roleArray.push(res[i].title);
+        }
     })
+    return roleArray;
+};
+
+const managerArray[];
+
+function getManager() {
+    connection.query
 }
