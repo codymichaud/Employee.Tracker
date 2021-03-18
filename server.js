@@ -1,4 +1,4 @@
-const mysql = require('mysql2/promise');
+const mysql = require('mysql');
 const inquirer = require('inquirer');
 const consoleTable = require('console.table');
 
@@ -95,15 +95,25 @@ function addEmployee() {
         name: 'role',
         input: 'list',
         message: 'What is the employees role?',
-        choices: selectRole()
+        choices: getRole()
     },
     {
         name: 'choice',
         type: 'rawlist',
         message: 'What is the Managers name?',
-        choices: selectManager()
+        choices: getManager()
     }]).then((answers) => {
         const rolesId = selectRole().indexOf(answers.role) + 1;
         const managerId = selectManager().indexOf(answers.choice) + 1;
+        connection.query('INSERT INTO employee SET ?', {
+            first_name: answers.firstName,
+            last_name: answers.lastName,
+            role_id: rolesId,
+            manager_id: managerId
+        }, (error) => {
+            if (error) throw error;
+            console.table(answers);
+            startPrompt();
+        })
     })
 }
