@@ -26,6 +26,7 @@ function startPrompt() {
             'View All Employees',
             'View All Employees By Department',
             'View All Employees By Manager',
+            'View All Employees By Role',
             'Add Employee',
             'Update Employee'
         ]
@@ -37,6 +38,10 @@ function startPrompt() {
 
             case 'View All Employees By Department':
                 viewDepart();
+                break;
+
+            case 'View All Employees By Role':
+                viewRole();
                 break;
 
             case 'View All Employees By Manager':
@@ -123,5 +128,32 @@ function viewAll() {
         if (error) throw error;
         console.table(res);
         startPrompt();
-    })
+    });
+};
+
+function viewDepart() {
+    connection.query('SELECT employee.first_name, employee.last_name, department.name AS Department FROM employee JOIN roles ON employee.role_id = roles.id JOIN department ON roles.department_id = department.id ORDER BY employee.id;',
+        (error, res) => {
+            if (error) throw error;
+            console.table(res);
+            startPrompt();
+        });
+};
+
+function viewRole() {
+    connection.query('SELECT employee.first_name, employee.last_name, roles.title AS title FROM employee JOIN roles ON employee.role_id = roles.id;',
+        (error, res) => {
+            if (error) throw error;
+            console.table(res);
+            startPrompt();
+        })
+}
+
+function updateEmployee() {
+    connection.query('SELECT employee.last_name, roles.title FROM employee JOIN roles ON employee.role_id = roles.id;',
+        (error, res) => {
+            if (error) throw error;
+            console.table(res);
+            startPrompt();
+        })
 }
