@@ -149,6 +149,10 @@ function viewRole() {
         })
 }
 
+function viewManager() {
+    connection.query
+}
+
 function updateEmployee() {
     connection.query('SELECT employee.last_name, roles.title FROM employee JOIN roles ON employee.role_id = roles.id;',
         (error, res) => {
